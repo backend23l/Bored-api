@@ -11,7 +11,11 @@ class Bored:
         Returns:
             str: text of activity
         '''
-        pass    
+        endpoint = 'activity/'  
+        url = self.url + endpoint  # http://www.boredapi.com/api/activity/
+
+        response = requests.get(url)
+        return response.json()
 
     def get_activity_by_type(self, type: str) -> dict:
         '''get activity by type
@@ -28,18 +32,16 @@ class Bored:
         pass
 
     def get_activity_by_id(self, key: int) -> dict:
-        '''get activity by key
+        
+        endpoint = 'activity/'  
+        url = self.url + endpoint  # http://www.boredapi.com/api/activity/
 
-        Note:
-            A unique numeric id: [1000000, ..., 9999999]
-        
-        Args:
-            key (int): key
-        
-        Returns:
-            dict: activity data
-        '''
-        pass
+        payload = {
+            "key": key
+        }
+
+        response = requests.get(url, params=payload)
+        return response.json()
 
     def get_activity_by_accessibility(self, accessibility: float) -> dict:
         '''get activity by accessibility
